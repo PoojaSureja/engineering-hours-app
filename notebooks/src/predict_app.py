@@ -14,7 +14,7 @@ st.write("Enter the values below to predict engineering hours")
 stock_count = st.number_input("Stock Count", value=10)
 unique_model_count = st.number_input("Unique Model Count", value=3)
 total_sell_price = st.number_input("Total Sell Price", value=10000.0)
-ind_2020 = st.selectbox("Is Model from 2020?", options=[0, 1])  # 0 = No, 1 = Yes
+ind_2020 = st.selectbox("Project begin after january 2020?", options=[0, 1])  # 0 = No, 1 = Yes
 
 # Predict button
 if st.button("Predict"):
@@ -39,5 +39,6 @@ if st.button("Predict"):
         # ✅ Show only the number
         predicted_hours = result['predictions'][0]
         st.success(f"Predicted Hours: {predicted_hours}")
+        st.success(f"Predicted Hours: {rounded_hours}")
     except Exception as e:
         st.error(f"Error occurred: {str(e)}")
