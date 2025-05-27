@@ -36,7 +36,8 @@ if st.button("Predict"):
         response = requests.post(url, headers=headers, json=payload)
         result = response.json()
 
-        # ✅ You might want to extract just the prediction if it's inside a key like 'predictions'
-        st.success(f"Predicted Hours: {result}")
+        # ✅ Show only the number
+        predicted_hours = result['predictions'][0]
+        st.success(f"Predicted Hours: {predicted_hours}")
     except Exception as e:
         st.error(f"Error occurred: {str(e)}")
