@@ -2,7 +2,6 @@
 import streamlit as st
 import requests
 import numpy as np
-# from scipy.special import inv_boxcox
 
 databricks_token = "dapi6b51821ac8550f016bcc7d609b143f22"
 
@@ -13,6 +12,7 @@ st.title("Engineering Hours Predictor")
 st.write("Enter the values below to predict engineering hours")
 
 def inverse_boxcox(y, lmbda):
+    import numpy as np
     if lmbda == 0:
         return np.exp(y)
     else:
@@ -60,7 +60,7 @@ if st.button("Predict"):
 
         if transformed_pred is not None:
             # 🔁 Inverse Box-Cox transform
-            original_pred = inv_boxcox(transformed_pred, BOXCOX_LAMBDA)
+            original_pred = inverse_boxcox(transformed_pred, BOXCOX_LAMBDA)  # ✅ CORRECT
             st.success(f"Predicted Engineering Hours: {original_pred:.2f}")
         else:
             st.error("Prediction could not be retrieved from response.")
