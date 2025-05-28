@@ -2,6 +2,8 @@
 import streamlit as st
 import requests
 import numpy as np
+from scipy.special import inv_boxcox
+from scipy import stats
 
 databricks_token = "dapi6b51821ac8550f016bcc7d609b143f22"
 
@@ -11,12 +13,12 @@ DATABRICKS_TOKEN = st.secrets["databricks_token"]
 st.title("Engineering Hours Predictor")
 st.write("Enter the values below to predict engineering hours")
 
-def inverse_boxcox(y, lmbda):
-    import numpy as np
-    if lmbda == 0:
-        return np.exp(y)
-    else:
-        return np.power(y * lmbda + 1, 1 / lmbda)
+# def inverse_boxcox(y, lmbda):
+#     import numpy as np
+#     if lmbda == 0:
+#         return np.exp(y)
+#     else:
+#         return np.power(y * lmbda + 1, 1 / lmbda)
 
 
 # ✅ Replace with actual lambda used in training
