@@ -20,7 +20,7 @@ def inverse_boxcox(y, lmbda):
 
 
 # ✅ Replace with actual lambda used in training
-# BOXCOX_LAMBDA = 0.10350704191564682
+BOXCOX_LAMBDA = 0.10350704191564682
 
 # Input fields
 stock_count = st.number_input("Stock Count", value=10)
