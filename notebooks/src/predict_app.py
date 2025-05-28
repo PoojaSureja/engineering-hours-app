@@ -12,9 +12,15 @@ DATABRICKS_TOKEN = st.secrets["databricks_token"]
 st.title("Engineering Hours Predictor")
 st.write("Enter the values below to predict engineering hours")
 
+def inverse_boxcox(y, lmbda):
+    if lmbda == 0:
+        return np.exp(y)
+    else:
+        return np.power(y * lmbda + 1, 1 / lmbda)
+
 
 # ✅ Replace with actual lambda used in training
-BOXCOX_LAMBDA = 0.10350704191564682
+# BOXCOX_LAMBDA = 0.10350704191564682
 
 # Input fields
 stock_count = st.number_input("Stock Count", value=10)
