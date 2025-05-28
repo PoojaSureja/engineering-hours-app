@@ -2,7 +2,7 @@
 import streamlit as st
 import requests
 import numpy as np
-from scipy.special import inv_boxcox
+# from scipy.special import inv_boxcox
 
 databricks_token = "dapi6b51821ac8550f016bcc7d609b143f22"
 
