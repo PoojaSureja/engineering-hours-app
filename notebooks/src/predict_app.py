@@ -1,6 +1,8 @@
 
 import streamlit as st
 import requests
+import numpy as np
+from scipy.special import inv_boxcox
 
 databricks_token = "dapi6b51821ac8550f016bcc7d609b143f22"
 
@@ -10,11 +12,15 @@ DATABRICKS_TOKEN = st.secrets["databricks_token"]
 st.title("Engineering Hours Predictor")
 st.write("Enter the values below to predict engineering hours")
 
+
+# ✅ Replace with actual lambda used in training
+BOXCOX_LAMBDA = 0.10350704191564682
+
 # Input fields
 stock_count = st.number_input("Stock Count", value=10)
 unique_model_count = st.number_input("Unique Model Count", value=3)
 total_sell_price = st.number_input("Total Sell Price", value=10000.0)
-ind_2020 = st.selectbox("Project begin after january 2020?", options=[0, 1])  # 0 = No, 1 = Yes
+ind_2020 = st.selectbox("Is Model from 2020?", options=[0, 1])  # 0 = No, 1 = Yes
 
 # Predict button
 if st.button("Predict"):
@@ -33,12 +39,24 @@ if st.button("Predict"):
     }
 
     try:
+    #     response = requests.post(url, headers=headers, json=payload)
+    #     result = response.json()
+
+    #     predicted_hours = result['predictions'][0]
+    #     st.success(f"Predicted Hours: {predicted_hours}")
+    # except Exception as e:
+    #     st.error(f"Error occurred: {str(e)}")
         response = requests.post(url, headers=headers, json=payload)
         result = response.json()
 
-        # ✅ Show only the number
-        predicted_hours = result['predictions'][0]
-        st.success(f"Predicted Hours: {predicted_hours}")
-        st.success(f"Predicted Hours: {rounded_hours}")
+        # ✅ Extract Box-Cox transformed prediction
+        transformed_pred = result.get("predictions", [None])[0]
+
+        if transformed_pred is not None:
+            # 🔁 Inverse Box-Cox transform
+            original_pred = inv_boxcox(transformed_pred, BOXCOX_LAMBDA)
+            st.success(f"Predicted Engineering Hours: {original_pred:.2f}")
+        else:
+            st.error("Prediction could not be retrieved from response.")
     except Exception as e:
-        st.error(f"Error occurred: {str(e)}")
+            st.error(f"Error occurred: {str(e)}")
