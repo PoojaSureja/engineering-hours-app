@@ -25,7 +25,7 @@ BOXCOX_LAMBDA = 0.10350704191564682
 
 # Input fields
 stock_count = st.number_input("Stock Count", value=5)
-UniqueModelCount = st.number_input("Unique Model Count", value=2)
+Unique_Model_Count = st.number_input("Unique Model Count", value=2)
 repeted_customer_count = st.number_input("Repeated Customer Count", value=1)
 total_price = st.number_input("Total Price (per stock)", value=10000.0)
 ind_2020 = st.selectbox("Project began after January 2020?", options=[0, 1])
@@ -42,8 +42,8 @@ if st.button("Predict"):
 
     payload = {
         "dataframe_split": {
-            "columns": ["UniqueModelCount", "repeted_customer_count", "ind_2020", "total_price", "stock_count", "CustomerNo"],
-            "data": [[UniqueModelCount, repeted_customer_count, ind_2020, total_price, stock_count, CustomerNo]]
+            "columns": ["Unique_Model_Count", "repeted_customer_count", "ind_2020", "total_price", "stock_count", "CustomerNo"],
+            "data": [[Unique_Model_Count, repeted_customer_count, ind_2020, total_price, stock_count, CustomerNo]]
         }
     }
 
