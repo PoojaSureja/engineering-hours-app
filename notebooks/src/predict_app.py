@@ -24,10 +24,12 @@ def inverse_boxcox(y, lmbda):
 BOXCOX_LAMBDA = 0.10350704191564682
 
 # Input fields
-stock_count = st.number_input("Stock Count", value=10)
-unique_model_count = st.number_input("Unique Model Count", value=3)
-total_sell_price = st.number_input("Total Sell Price", value=10000.0)
-ind_2020 = st.selectbox("Project begin after january 2020?", options=[0, 1])  # 0 = No, 1 = Yes
+stock_count = st.number_input("Stock Count", value=5)
+unique_model_count = st.number_input("Unique Model Count", value=2)
+repeted_customer_count = st.number_input("Repeated Customer Count", value=1)
+total_price = st.number_input("Total Price (per stock)", value=10000.0)
+ind_2020 = st.selectbox("Project began after January 2020?", options=[0, 1])
+customer_no = st.text_input("Customer Number", value="C1234")
 
 # Predict button
 if st.button("Predict"):
@@ -40,19 +42,12 @@ if st.button("Predict"):
 
     payload = {
         "dataframe_split": {
-            "columns": ["stock_count", "UniqueModelCount", "total_sell_price", "2020_ind"],
-            "data": [[stock_count, unique_model_count, total_sell_price, ind_2020]]
+            "columns": ["UniqueModelCount", "repeted_customer_count", "2020_ind", "total_price", "stock_count", "CustomerNo"],
+            "data": [[UniqueModelCount, repeted_customer_count, 2020_ind, total_price, stock_count, CustomerNo]]
         }
     }
 
     try:
-    #     response = requests.post(url, headers=headers, json=payload)
-    #     result = response.json()
-
-    #     predicted_hours = result['predictions'][0]
-    #     st.success(f"Predicted Hours: {predicted_hours}")
-    # except Exception as e:
-    #     st.error(f"Error occurred: {str(e)}")
         response = requests.post(url, headers=headers, json=payload)
         result = response.json()
 
