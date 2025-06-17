@@ -29,7 +29,7 @@ Unique_Model_Count = st.number_input("Unique Model Count", value=2)
 repeted_customer_count = st.number_input("Repeated Customer Count", value=1)
 total_price = st.number_input("Total Price (per stock)", value=10000.0)
 ind_2020 = st.selectbox("Project began after January 2020?", options=[0, 1])
-customer_no = st.text_input("Customer Number", value="C1234")
+CustomerNo = st.text_input("Customer Number", value="C1234")
 
 # Predict button
 if st.button("Predict"):
