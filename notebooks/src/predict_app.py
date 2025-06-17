@@ -42,8 +42,8 @@ if st.button("Predict"):
 
     payload = {
         "dataframe_split": {
-            "columns": ["UniqueModelCount", "repeted_customer_count", "ind_2020", "total_price", "stock_count", "CustomerNo"],
-            "data": [[UniqueModelCount, repeted_customer_count, ind_2020, total_price, stock_count, CustomerNo]]
+            "columns": ["unique_model_count", "repeted_customer_count", "ind_2020", "total_price", "stock_count", "customer_no"],
+            "data": [[unique_model_count, repeted_customer_count, ind_2020, total_price, stock_count, customer_no]]
         }
     }
 
