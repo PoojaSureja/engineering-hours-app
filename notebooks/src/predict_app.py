@@ -33,8 +33,8 @@ customer_no = st.text_input("Customer Number", value="C1234")
 
 # Predict button
 if st.button("Predict"):
-    url = "https://adb-3010693782896111.11.azuredatabricks.net/serving-endpoints/imacs_engineering-hours-predictor/invocations"
-
+    url = "https://adb-3010693782896111.11.azuredatabricks.net/serving-endpoints/yyy/invocations"
+    
     headers = {
         "Authorization": f"Bearer {DATABRICKS_TOKEN}",  # ✅ Use Bearer and actual token value
         "Content-Type": "application/json"
