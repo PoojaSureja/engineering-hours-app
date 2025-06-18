@@ -26,14 +26,16 @@ BOXCOX_LAMBDA = 0.10350704191564682
 
 
 # Load the lookup table once
+import streamlit as st
+import pandas as pd
+
 @st.cache_data
 def load_repeat_counts():
-    file_path = os.path.join(os.path.dirname(__file__), "repeted_customer_counts.csv")
-    return pd.read_csv(file_path)
+    return pd.read_csv("repeted_customer_counts.csv")  # ✅ Use relative path directly
 
-# ✅ Ensure this is included!
 repeat_df = load_repeat_counts()
 repeat_dict = dict(zip(repeat_df["CustomerNo"], repeat_df["repeted_customer_count"]))
+
 
 # Input fields
 stock_count = st.number_input("Stock Count", value=5)
