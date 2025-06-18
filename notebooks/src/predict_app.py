@@ -34,7 +34,6 @@ from pathlib import Path
 @st.cache_data
 def load_repeat_counts():
     file_path = Path(__file__).parent / "repeted_customer_counts.csv"
-    st.write("Looking for file at:", file_path)  # ✅ Now it's inside scope
     return pd.read_csv(file_path)
 
 repeat_df = load_repeat_counts()
