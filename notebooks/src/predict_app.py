@@ -42,8 +42,14 @@ total_price = total_price_total / stock_count if stock_count != 0 else 0
 ind_2020 = st.selectbox("Project began after January 2020?", options=[0, 1])
 CustomerNo = st.text_input("Customer Number", value="C1234")
 # Automatically look up repeated count
-repeted_customer_count = repeat_dict.get(CustomerNo, 0)
-st.text_input("Repeated Customer Count (autoCalculate)", value=str(repeted_customer_count), disabled=True)
+# Automatically look up repeated count
+if CustomerNo in repeat_dict:
+    repeted_customer_count = repeat_dict[CustomerNo]
+    st.text_input("Repeated Customer Count (autoCalculate)", value=str(repeted_customer_count), disabled=True)
+else:
+    repeted_customer_count = 0
+    st.text_input("Repeated Customer Count (autoCalculate)", value="0", disabled=True)
+    st.warning("Customer number not found in historical data. Assuming repeated count = 0.")
 
 # repeted_customer_count = st.number_input("Repeated Customer Count", value=1)
 
