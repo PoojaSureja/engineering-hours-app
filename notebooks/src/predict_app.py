@@ -29,9 +29,13 @@ BOXCOX_LAMBDA = 0.10350704191564682
 import streamlit as st
 import pandas as pd
 
+from pathlib import Path
+
 @st.cache_data
 def load_repeat_counts():
-    return pd.read_csv("repeted_customer_counts.csv")  # ✅ Use relative path directly
+    file_path = Path(__file__).parent / "repeted_customer_counts.csv"
+    return pd.read_csv(file_path)
+st.write("Looking for file at:", file_path)
 
 repeat_df = load_repeat_counts()
 repeat_dict = dict(zip(repeat_df["CustomerNo"], repeat_df["repeted_customer_count"]))
