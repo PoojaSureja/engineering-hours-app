@@ -51,8 +51,6 @@ else:
     st.text_input("Repeated Customer Count (autoCalculate)", value="0", disabled=True)
     st.warning("Customer number not found in historical data. Assuming repeated count = 0.")
 
-# repeted_customer_count = st.number_input("Repeated Customer Count", value=1)
-
 
 # Predict button
 if st.button("Predict"):
