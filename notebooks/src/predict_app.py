@@ -52,10 +52,10 @@ CustomerNo = st.text_input("Customer Number", value="C1234")
 # Automatically look up repeated count
 if CustomerNo in repeat_dict:
     repeted_customer_count = repeat_dict[CustomerNo]
-    st.metric(label="Repeated Customer Count (auto-calculated)", value=repeted_customer_count)
+    st.write(f"Repeated Customer Count (auto-calculated): {repeted_customer_count}")
 else:
     repeted_customer_count = 0
-    st.text_input("Repeated Customer Count (autoCalculate)", value="0", disabled=True)
+    st.write("Repeated Customer Count (auto-calculated): 0")
     st.warning("Customer number not found in historical data. Assuming repeated count = 0.")
 
 
