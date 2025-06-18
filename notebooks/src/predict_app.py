@@ -27,7 +27,7 @@ BOXCOX_LAMBDA = 0.10350704191564682
 stock_count = st.number_input("Stock Count", value=5)
 Unique_Model_Count = st.number_input("Unique Model Count", value=2)
 repeted_customer_count = st.number_input("Repeated Customer Count", value=1)
-total_price_total = st.number_input("Total Price (for all stocks)", value=50000.0)
+total_price_total = st.number_input("Total Price", value=50000.0)
 total_price = total_price_total / stock_count if stock_count != 0 else 0
 ind_2020 = st.selectbox("Project began after January 2020?", options=[0, 1])
 CustomerNo = st.text_input("Customer Number", value="C1234")
